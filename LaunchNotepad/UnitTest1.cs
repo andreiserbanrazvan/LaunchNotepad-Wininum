@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Winium;
 using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LaunchNotepad
 {
@@ -14,7 +15,11 @@ namespace LaunchNotepad
             DesktopOptions options = new DesktopOptions();
             options.ApplicationPath = "C:\\Windows\\System32\\notepad.exe";
 
-            WiniumDriver driver = new WiniumDriver(@"C:\Users\andrei.serban\Downloads\Winium.Desktop.Driver", options);
+            String path = AppDomain.CurrentDomain.BaseDirectory;
+
+            WiniumDriver driver = new WiniumDriver(path, options);
+
+            driver.FindElementByClassName("Edit").SendKeys("Hello World");
 
         }
     }
